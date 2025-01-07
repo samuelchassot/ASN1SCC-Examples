@@ -1,4 +1,4 @@
-# ASN1SCC_examples
+# ASN1SCC Examples
 
 ## Build the examples
 
@@ -58,6 +58,5 @@ expected:
 ❯ ./sample_test_acn
 00 01 02 40 09 1e b8 51 eb 85 1f 48 65 6c 6c 6f 57 6f 72 6c 64 (21 bytes)
 ```
-
 
 As we can see, the specified binary format specified by the ACN config makes the output smaller than the UPER format.
