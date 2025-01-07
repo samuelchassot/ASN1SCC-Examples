@@ -1,0 +1,12 @@
+-- message.asn
+
+MY-MODULE DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+Message ::= SEQUENCE {
+    msgId           INTEGER (0..131071),    -- 16 bits positive
+    myflag           INTEGER (1..255),       -- constrained range
+    value           REAL,                   -- floating-point
+    szDescription   OCTET STRING (SIZE(10)) -- 10 octets
+}
+
+END

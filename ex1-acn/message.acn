@@ -1,0 +1,11 @@
+MY-MODULE DEFINITIONS ::= BEGIN
+
+IdentifierType [size 16, encoding twos-complement]
+
+Message [] {
+  msgId [],
+  myflag [size 8, encoding pos-int],
+  value [encoding IEEE754-1985-64],
+  szDescription []
+}
+END
