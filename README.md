@@ -27,6 +27,19 @@ cd ex1-acn
 
 ## Run the examples
 
+Here is the test message:
+
+```c
+Message testMessage = {  
+        .msgId  = 1,
+        .myflag = 2,
+        .value  = 3.14,
+        .szDescription = {
+             .arr = "HelloWorld"
+        }
+    };
+```
+
 UPER:
 
 ```bash
