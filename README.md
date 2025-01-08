@@ -73,3 +73,39 @@ expected:
 ```
 
 As we can see, the specified binary format specified by the ACN config makes the output smaller than the UPER format.
+
+## Dynamic size example
+
+Message format:
+
+```bash
+Choice DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+EXPORTS ALL;
+MyChoice ::= CHOICE
+{
+  choice1 SEQUENCE {
+    fst INTEGER,
+    snd INTEGER
+  },
+  choice2 INTEGER
+}
+END
+```
+
+generates this size function:
+
+```scala
+def size(offset: Long): Long = {
+  require((0L <= offset) && (offset <= 9223372036854775662L))
+  this match {
+    case TMyChoice.choice1_PRESENT(choice1) =>
+      val size_1_0 = 8L * GetLengthForEncodingSigned(choice1.fst) + 8L
+      val size_1_1 = 8L * GetLengthForEncodingSigned(choice1.snd) + 8L
+      size_1_0 + size_1_1
+    case TMyChoice.choice2_PRESENT(choice2) =>
+      8L * GetLengthForEncodingSigned(choice2) + 8L
+  }
+}.ensuring { (res: Long) => (0L <= res) && (res <= 145L)}
+```
+
+And as we can see, the size depends on the choice made.
